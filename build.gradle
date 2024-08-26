@@ -1,0 +1,61 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.3'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+//	implementation('io.dapr:dapr-sdk-springboot:1.8.0') {
+//		exclude group: 'reactor-core', module: 'reactor-core'
+//	}
+//	implementation dependencies.create(libs.dapr.vault.lib.get()) {
+//		exclude group: 'com.google.guava', module: 'guava'
+//		exclude group: 'org.springframework', module: 'spring-core'
+//		exclude group: 'org.springframework', module: 'spring-web'
+//		exclude group: 'com.google.protobuf', module: 'protobuf-java'
+//		exclude group: 'org.bouncycastle', module: 'bcprov-jdk15on'
+//		exclude group: 'com.jayway.jsonpath', module: 'json-path'
+//	}
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+	implementation 'org.apache.commons:commons-lang3:3.0'
+	implementation 'io.dapr:dapr-sdk:1.12.0-rc-1'
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
+	implementation 'org.springframework.boot:spring-boot-starter-json'
+//	implementation 'io.dapr:dapr-sdk-springboot:1.8.0'
+//	implementation 'io.dapr:dapr-sdk-springboot:1.6.0'
+//	implementation 'io.dapr:dapr-sdk:1.6.0'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,24 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: il-imps-audit-pubsub
+scopes:
+  - audit-logging-service
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+    - name: brokers
+      value: "localhost:9092"
+    - name: clientID
+      value: "audit-logging-service"
+    - name: authType
+      value: "none"
+    - name: authRequired
+      value: "false"
+    - name: disableTls
+      value: "true"
+    - name: maxMessageBytes
+      value: 3072
+    - name: consumeRetryInterval
+      value: 200ms
